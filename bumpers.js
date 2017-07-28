@@ -62,7 +62,7 @@ videojs.plugin('bumpers', function(params) {
         if(option.video) {
             myPlayer.catalog.load(video);
         } else if (option.sources && option.sources.length > 0) {
-            myPlayer.src(sources);
+            myPlayer.src(option.sources);
         }
         
         if(showPoster) {
