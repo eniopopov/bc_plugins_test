@@ -1,0 +1,47 @@
+/**
+ * @brightcove/videojs-custom-endscreen
+ * @version 2.0.10
+ * @copyright 2017 Brightcove, Inc.
+ * @license UNLICENSED
+ */
+.video-js .vjs-custom-endscreen-overlay{
+    text-align:center
+}
+
+.video-js .vjs-endscreen-overlay-content{
+    background-color:#000;
+    color:#fff;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+    height:auto;
+    position:static
+}
+
+.video-js .vjs-endscreen-overlay-content a{
+    color:#fff
+}
+
+.video-js .vjs-endscreen-overlay-content a:hover{
+    text-decoration:none
+}
+
+.video-js .vjs-endscreen-overlay-buttons{
+    height:4em
+}
+
+.video-js .vjs-endscreen-overlay-buttons .vjs-control{
+    cursor:pointer;
+    display:inline-block;
+    font-size:4em;
+    height:1em;
+    margin:0 0.2em;
+    width:1em
+}
+
+.video-js .vjs-endscreen-overlay-buttons .vjs-control:before{
+    font-size:inherit;
+    line-height:inherit
+}
+
+.video-js .vjs-endscreen-overlay-buttons .vjs-control:hover:before, .video-js .vjs-endscreen-overlay-buttons .vjs-control:focus:before{
+    text-shadow:1px -1px 20px #fff, -1px 1px 20px #fff
+}

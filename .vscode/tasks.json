@@ -1,0 +1,20 @@
+// Sass configuration
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "taskName": "Sass Compile",
+            "isShellCommand": true,
+            "isBuildCommand": true,
+            "command": "node-sass overlay.scss overlay.css"
+        },
+        {
+            "taskName": "Publish",
+            "isShellCommand": true,
+            "isBuildCommand": true,
+            "command": "get-childitem -path \"*.*\" | copy-item -destination \"C:\\inetpub\\wwwroot\\overlay\" -Recurse -force"
+        }
+    ]
+}
