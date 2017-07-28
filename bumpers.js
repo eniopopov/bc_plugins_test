@@ -11,12 +11,14 @@ videojs.plugin('bumpers', function(params) {
         endPlayed = false;
         mainPlayed = false;
 
-    bumpers.push({
-        type: 'main',
-        videoId: myPlayer.options()['data-video-id']
-    });
+    myPlayer.one("loadedmetadata", function () {
+            bumpers.push({
+            type: 'main',
+            videoId: myPlayer.mediainfo.videoId
+        });
 
-    preload();
+        preload();
+    });
 
     myPlayer.on("play", function () {
         if(!startPlayed) {
