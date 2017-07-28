@@ -2,16 +2,16 @@
  * Bumpers Plugin
  */
 
-videojs.plugin('bumpers', function(opts) {
+videojs.plugin('bumpers', function(params) {
 
-    var options = opts;
+    var bumpers = params.bumpers || [];
 
     var myPlayer = this,
         startPlayed = false,
         endPlayed = false;
         mainPlayed = false;
 
-    options.push({
+    bumpers.push({
         type: 'main',
         videoId: myPlayer.options()['data-video-id']
     });
@@ -70,14 +70,14 @@ videojs.plugin('bumpers', function(opts) {
     };
 
     function preload() {
-        for(var i = 0; i < options.length; i++ ) {
-            myPlayer.catalog.getVideo(options[i].videoId, function(error, video) {
-                for(var j = 0; j < options.length; j++) {
-                    if(options[j].videoId == video.id) {
+        for(var i = 0; i < bumpers.length; i++ ) {
+            myPlayer.catalog.getVideo(bumpers[i].videoId, function(error, video) {
+                for(var j = 0; j < bumpers.length; j++) {
+                    if(bumpers[j].videoId == video.id) {
                         if(!error) {
-                            options[j].video = video;
+                            bumpers[j].video = video;
                         } else {
-                            options[j].playable = false;
+                            bumpers[j].playable = false;
                         }
                     }
                 }
@@ -86,7 +86,7 @@ videojs.plugin('bumpers', function(opts) {
     }
 
     function getVideoOption(type) {
-        var opts = options.filter(function (value) {
+        var opts = bumpers.filter(function (value) {
                 return value.type === type;
             });
 
