@@ -72,12 +72,14 @@ videojs.plugin('bumpers', function(params) {
     function preload() {
         for(var i = 0; i < bumpers.length; i++ ) {
             myPlayer.catalog.getVideo(bumpers[i].videoId, function(error, video) {
-                for(var j = 0; j < bumpers.length; j++) {
-                    if(bumpers[j].videoId == video.id) {
-                        if(!error) {
-                            bumpers[j].video = video;
-                        } else {
-                            bumpers[j].playable = false;
+                if(!error) {
+                    for(var j = 0; j < bumpers.length; j++) {
+                        if(video && bumpers[j].videoId == video.id) {
+                            if(!error) {
+                                bumpers[j].video = video;
+                            } else {
+                                bumpers[j].playable = false;
+                            }
                         }
                     }
                 }
