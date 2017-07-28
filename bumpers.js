@@ -55,7 +55,7 @@ videojs.plugin('bumpers', function(params) {
         }
     });
 
-    function loadVideo (video, autoPlay, showPoster) { 
+    function loadVideo (video, autoPlay, showPoster) {
         myPlayer.catalog.load(video);
         
         if(showPoster) {
@@ -71,8 +71,8 @@ videojs.plugin('bumpers', function(params) {
 
     function preload() {
         for(var i = 0; i < bumpers.length; i++ ) {
-            myPlayer.catalog.getVideo(bumpers[i].videoId, function(error, video) {
-                if(!error) {
+            if(bumpers[i].videoId) {
+                myPlayer.catalog.getVideo(bumpers[i].videoId, function(error, video) {
                     for(var j = 0; j < bumpers.length; j++) {
                         if(video && bumpers[j].videoId == video.id) {
                             if(!error) {
@@ -82,8 +82,8 @@ videojs.plugin('bumpers', function(params) {
                             }
                         }
                     }
-                }
-            });
+                });
+            }
         }
     }
 
