@@ -14,7 +14,7 @@ videojs.plugin('bumpers', function(params) {
     myPlayer.one("loadedmetadata", function () {
             bumpers.push({
             type: 'main',
-            videoId: myPlayer.mediainfo.videoId
+            sources: myPlayer.mediainfo.sources
         });
 
         preload();
@@ -25,7 +25,7 @@ videojs.plugin('bumpers', function(params) {
             var startOption = getVideoOption('start');
 
             if(startOption) {
-                loadVideo(startOption.video, true, false);
+                loadVideo(startOption, true, false);
                 startPlayed = true;
             }
         }
@@ -37,7 +37,7 @@ videojs.plugin('bumpers', function(params) {
             var mainOption = getVideoOption('main');
 
             if(mainOption) {
-                loadVideo(mainOption.video, true, true);
+                loadVideo(mainOption, true, true);
                 mainPlayed = true;
             }
 
@@ -45,7 +45,7 @@ videojs.plugin('bumpers', function(params) {
             var endOption = getVideoOption('end');
 
             if(endOption) {
-                loadVideo(endOption.video, true, false);
+                loadVideo(endOption, true, false);
                 endPlayed = true;
             }
         } else if (endPlayed) {
@@ -53,12 +53,17 @@ videojs.plugin('bumpers', function(params) {
 
             startPlayed = mainPlayed = endPlayed = false;
 
-            loadVideo(mainOption.video, false, false);
+            loadVideo(mainOption, false, false);
         }
     });
 
-    function loadVideo (video, autoPlay, showPoster) {
-        myPlayer.catalog.load(video);
+    function loadVideo (option, autoPlay, showPoster) {
+
+        if(option.video) {
+            myPlayer.catalog.load(video);
+        } else if (option.sources && option.sources.length > 0) {
+            myPlayer.src(sources);
+        }
         
         if(showPoster) {
             myPlayer.posterImage.show();
