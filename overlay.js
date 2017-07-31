@@ -445,20 +445,20 @@ var plugin = function plugin(options) {
   // because it doesn't make sense to pass it to each Overlay component.
   delete settings.overlays;
 
-  var cuePoints = _this2.mediainfo.cue_points.filter(function (value) {
-    return value.metadata === "overlay";
-  });
+  // var cuePoints = _this2.mediainfo.cue_points.filter(function (value) {
+  //   return value.metadata === "overlay";
+  // });
 
   this.overlays_ = overlays.map(function (overlay) {
-    cuePoints.map(function (cuep) {
-      if(overlay.cue_start && overlay.cue_start === cuep.name) {
-        overlay.start = cuep.startTime;
-      }
+    // cuePoints.map(function (cuep) {
+    //   if(overlay.cue_start && overlay.cue_start === cuep.name) {
+    //     overlay.start = cuep.startTime;
+    //   }
 
-      if(overlay.cue_end && overlay.cue_end === cuep.name) {
-        overlay.end = cuep.startTime;
-      }
-    });
+    //   if(overlay.cue_end && overlay.cue_end === cuep.name) {
+    //     overlay.end = cuep.startTime;
+    //   }
+    // });
 
     var mergeOptions = _videoJs2['default'].mergeOptions(settings, overlay);
 
