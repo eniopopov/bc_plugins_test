@@ -55,14 +55,15 @@ a img {
 			var bumperTestPlayer = window.player = videojs("bumperTest");
 			bumperTestPlayer.on("ready", function(){
 				var _this = this;
-				_this.bumpers([{
-					type: 'start',
-					videoId: 5523232688001
-				}, 
-				{
-					type: 'end',
-					videoId: 5523232688001
-				}]);
+				_this.bumpers({
+					bumpers: [{
+						type: 'start',
+						videoId: 5523232688001
+					}, 
+					{
+						type: 'end',
+						videoId: 5523232688001
+				}]});
 
 				_this.overlay({
 					overlays: [{

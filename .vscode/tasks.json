@@ -8,7 +8,10 @@
             "taskName": "Sass Compile",
             "isShellCommand": true,
             "isBuildCommand": true,
-            "command": "node-sass overlay.scss overlay.css"
+            "command": "node-sass overlay.scss overlay.css",
+            "problemMatcher": [
+                "$tsc-watch"
+            ]
         },
         {
             "taskName": "Publish",

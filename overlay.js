@@ -136,27 +136,7 @@ var hasNoWhitespace = function hasNoWhitespace(s) {
 var Overlay = (function (_Component) {
   _inherits(Overlay, _Component);
 
-  function Overlay(player, options) {
-    var _this = this;
-
-    _classCallCheck(this, Overlay);
-
-    _get(Object.getPrototypeOf(Overlay.prototype), 'constructor', this).call(this, player, options);
-
-    ['start', 'end'].forEach(function (key) {
-      var value = _this.options_[key];
-
-      if (isNumber(value)) {
-        _this[key + 'Event_'] = 'timeupdate';
-      } else if (hasNoWhitespace(value)) {
-          _this[key + 'Event_'] = value;
-
-      // An overlay MUST have a start option. Otherwise, it's pointless.
-      } else if (key === 'start') {
-        throw new Error('invalid "start" option; expected number or string');
-      }
-    });    
-    
+  function Overlay(player, options) {    
     var _this = this;
 
     _classCallCheck(this, Overlay);
@@ -171,10 +151,10 @@ var Overlay = (function (_Component) {
       } else if (hasNoWhitespace(value)) {
           _this[key + 'Event_'] = value;
           
-        // An overlay MUST have a start option. Otherwise, it's pointless.
-        } else if (key === 'start') {
-          throw new Error('invalid "start" option; expected number or string');
-        }
+      // An overlay MUST have a start option. Otherwise, it's pointless.
+      } else if (key === 'start') {
+        throw new Error('invalid "start" option; expected number or string');
+      }
     });
 
     // video.js does not like components with multiple instances binding
@@ -192,7 +172,7 @@ var Overlay = (function (_Component) {
 
     // If the start event is a timeupdate, we need to watch for rewinds (i.e.,
     // when the user seeks backward).
-    if (this.startEvent_ === 'timeupdate'=== 'timeupdate') {
+    if (this.startEvent_ === 'timeupdate') {
       this.on(player, 'timeupdate', this.rewindListener_);
     }
 
@@ -415,7 +395,7 @@ var Overlay = (function (_Component) {
             this.debug((0, _tsmlj2['default'])(_templateObject3, start, time, end));
             this.hasShownSinceSeek_ = false;
             this.hide();
-          }
+        }
       }
 
       this.previousTime_ = time;
@@ -449,14 +429,38 @@ var plugin = function plugin(options) {
     });
   }
 
+// CuePoint
+// endTime:6
+// force_stop:false
+// id:"5524671155001"
+// metadata:"video_start"
+// name:"overlay"
+// startTime:0
+// time:0
+// type:"CODE"
+
   var overlays = settings.overlays;
 
   // We don't want to keep the original array of overlay options around
   // because it doesn't make sense to pass it to each Overlay component.
   delete settings.overlays;
 
-  this.overlays_ = overlays.map(function (o) {
-    var mergeOptions = _videoJs2['default'].mergeOptions(settings, o);
+  var cuePoints = _this2.mediainfo.cue_points.filter(function (value) {
+    return value.metadata === "overlay";
+  });
+
+  this.overlays_ = overlays.map(function (overlay) {
+    cuePoints.map(function (cuep) {
+      if(overlay.cue_start && overlay.cue_start === cuep.name) {
+        overlay.start = cuep.startTime;
+      }
+
+      if(overlay.cue_end && overlay.cue_end === cuep.name) {
+        overlay.end = cuep.startTime;
+      }
+    });
+
+    var mergeOptions = _videoJs2['default'].mergeOptions(settings, overlay);
 
     // Attach bottom aligned overlays to the control bar so
     // they will adjust positioning when the control bar minimizes

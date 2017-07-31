@@ -58,27 +58,19 @@ a img {
 					content: '<strong>Default overlay content</strong>',
 					overlays: [{
 						align: "center",
-						'class': 'vjs-overlay-large',
+						'class': 'vjs-overlay-fullscreen vjs-overlay-huge',
 						showBackground: true,
 						attachToControlBar: false,
 						content: "<a href='http://www.hopkinsmedicine.org/' target='_blank'><img src='HopkinsCME_logo_lrg.png' alt='Johns Hopkins Medicine'></img></a>",
-						start: 0,
-						end: 6
+						cue_start: 'video_start',
+						cue_end: 'initial_logo_slot_end',
 					}, {
+						cue_start: 'initial_logo_slot_end',
+						cue_end: 'end_logo_slot_start',
 						showBackground: false,
 						attachToControlBar: true,
 						content: "<a href='http://www.hopkinsmedicine.org/' target='_blank'><img src='HopkinsCME_logo_lrg.png' alt='Johns Hopkins Medicine'></img></a>",
-						start: 6,
-						end: 163.5,
 						align: 'bottom-right'
-					}, {
-						align: "center",
-						'class': 'vjs-overlay-large',
-						showBackground: true,
-						attachToControlBar: false,
-						content: "<div><a href='http://www.hopkinsmedicine.org/' target='_blank'><img src='HopkinsCME_logo_lrg.png' alt='Johns Hopkins Medicine'></img></a></div><div style='position: absolute; bottom: 4em; width: 90%; text-align: center; font-weight: bold; left: 1.2em;'><p>The contents of this video/website are for informational purposes only. Nothing contained in this video/website is intended to be a substitute for medical advice, diagnosis or treatment. Always consult your health care provider if you have any health care related conserns or qustions.</p></div>",
-						start: 163.5,
-						end: 175
 					}]
 				});
 	 
