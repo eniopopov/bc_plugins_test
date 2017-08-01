@@ -444,39 +444,39 @@ var plugin = function plugin(options) {
   // We don't want to keep the original array of overlay options around
   // because it doesn't make sense to pass it to each Overlay component.
   delete settings.overlays;
- 
-  var cuePoints = _this2.mediainfo.cue_points.filter(function (value) {
-    return value.metadata === "overlay";
-  });
-
-  _this2.overlays_ = overlays.map(function (overlay) {
-    cuePoints.map(function (cuep) {
-      if(overlay.cue_start && overlay.cue_start === cuep.name) {
-        overlay.start = cuep.startTime;
-      }
-
-      if(overlay.cue_end && overlay.cue_end === cuep.name) {
-        overlay.end = cuep.startTime;
-      }
+  
+  _this2.on('loadstart',function(){
+    var cuePoints = _this2.mediainfo.cue_points.filter(function (value) {
+      return value.metadata === "overlay";
     });
 
-    var mergeOptions = _videoJs2['default'].mergeOptions(settings, overlay);
+    _this2.overlays_ = overlays.map(function (overlay) {
+      cuePoints.map(function (cuep) {
+        if(overlay.cue_start && overlay.cue_start === cuep.name) {
+          overlay.start = cuep.startTime;
+        }
 
-    // Attach bottom aligned overlays to the control bar so
-    // they will adjust positioning when the control bar minimizes
-    if (mergeOptions.attachToControlBar && _this2.controlBar && mergeOptions.align.indexOf('bottom') !== -1) {
-      return _this2.controlBar.addChild('overlay', mergeOptions);
-    }
+        if(overlay.cue_end && overlay.cue_end === cuep.name) {
+          overlay.end = cuep.startTime;
+        }
+      });
 
-    return _this2.addChild('overlay', mergeOptions);
+      var mergeOptions = _videoJs2['default'].mergeOptions(settings, overlay);
+
+      // Attach bottom aligned overlays to the control bar so
+      // they will adjust positioning when the control bar minimizes
+      if (mergeOptions.attachToControlBar && _this2.controlBar && mergeOptions.align.indexOf('bottom') !== -1) {
+        return _this2.controlBar.addChild('overlay', mergeOptions);
+      }
+
+      return _this2.addChild('overlay', mergeOptions);
+    });
   });
 };
 
 plugin.VERSION = '1.1.4';
 
-_videoJs2['default'].one("ready", function () {
-  registerPlugin('overlay', plugin);
-});
+registerPlugin('overlay', plugin);
 
 exports['default'] = plugin;
 module.exports = exports['default'];
