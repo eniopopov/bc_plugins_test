@@ -446,7 +446,7 @@ var plugin = function plugin(options) {
   delete settings.overlays;
   
   _this2.on('loadstart',function(){
-    var cuePoints = _this2.mediainfo.cue_points.filter(function (value) {
+    var cuePoints = (_this2.mediainfo.cue_points || []).filter(function (value) {
       return value.metadata === "overlay";
     });
 
