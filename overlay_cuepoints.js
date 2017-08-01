@@ -474,7 +474,7 @@ var plugin = function plugin(options) {
 
 plugin.VERSION = '1.1.4';
 
-player.one("ready", function () {
+_videoJs2['default'].one("ready", function () {
   registerPlugin('overlay', plugin);
 });
 
