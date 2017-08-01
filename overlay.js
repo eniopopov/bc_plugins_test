@@ -415,8 +415,11 @@ _videoJs2['default'].registerComponent('Overlay', Overlay);
  */
 var plugin = function plugin(options) {
   var _this2 = this;
-
   var settings = _videoJs2['default'].mergeOptions(defaults, options);
+
+  if(settings.disabled) {
+      return;
+  }
 
   // De-initialize the plugin if it already has an array of overlays.
   if (Array.isArray(this.overlays_)) {
@@ -444,31 +447,30 @@ var plugin = function plugin(options) {
   // We don't want to keep the original array of overlay options around
   // because it doesn't make sense to pass it to each Overlay component.
   delete settings.overlays;
+  
+  _this2.on('loadstart',function(){
+    var cuePoints = (_this2.mediainfo.cue_points || []).filter(function (value) {
+      return value.metadata === "overlay";
+    });
 
-  // var cuePoints = _this2.mediainfo.cue_points.filter(function (value) {
-  //   return value.metadata === "overlay";
-  // });
+    _this2.overlays_ = overlays.map(function (overlay) {
+      cuePoints.map(function (cuep) {
+        if(overlay.cue_anchor && overlay.cue_anchor === cuep.name) {
+          overlay.start = cuep.startTime;
+          overlay.end = cuep.endTime;
+        }
+      });
 
-  this.overlays_ = overlays.map(function (overlay) {
-    // cuePoints.map(function (cuep) {
-    //   if(overlay.cue_start && overlay.cue_start === cuep.name) {
-    //     overlay.start = cuep.startTime;
-    //   }
+      var mergeOptions = _videoJs2['default'].mergeOptions(settings, overlay);
 
-    //   if(overlay.cue_end && overlay.cue_end === cuep.name) {
-    //     overlay.end = cuep.startTime;
-    //   }
-    // });
+      // Attach bottom aligned overlays to the control bar so
+      // they will adjust positioning when the control bar minimizes
+      if (mergeOptions.attachToControlBar && _this2.controlBar && mergeOptions.align.indexOf('bottom') !== -1) {
+        return _this2.controlBar.addChild('overlay', mergeOptions);
+      }
 
-    var mergeOptions = _videoJs2['default'].mergeOptions(settings, overlay);
-
-    // Attach bottom aligned overlays to the control bar so
-    // they will adjust positioning when the control bar minimizes
-    if (mergeOptions.attachToControlBar && _this2.controlBar && mergeOptions.align.indexOf('bottom') !== -1) {
-      return _this2.controlBar.addChild('overlay', mergeOptions);
-    }
-
-    return _this2.addChild('overlay', mergeOptions);
+      return _this2.addChild('overlay', mergeOptions);
+    });
   });
 };
 
