@@ -474,7 +474,9 @@ var plugin = function plugin(options) {
 
 plugin.VERSION = '1.1.4';
 
-registerPlugin('overlay', plugin);
+player.one("ready", function () {
+  registerPlugin('overlay', plugin);
+});
 
 exports['default'] = plugin;
 module.exports = exports['default'];
