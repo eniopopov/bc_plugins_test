@@ -29,6 +29,10 @@
             animation: fadein 2s;
 }
 
+.video-js .vjs-endscreen-overlay-content a{
+    text-decoration: none !important;
+}
+
 .video-js .vjs-endscreen-overlay-content p{
     padding-top: 6%;
     width: 80%;
