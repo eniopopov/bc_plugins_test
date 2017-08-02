@@ -58,7 +58,7 @@
 }
 
 .video-js .vjs-endscreen-overlay-buttons{
-    height:4em\
+    height:4em;
 }
 
 .video-js .vjs-endscreen-overlay-buttons .vjs-control{
@@ -68,7 +68,7 @@
     height:1em;
     margin:0 0.2em;
     width:1em;
-    color: #888;
+    color: #888 !important;
 }
 
 .video-js .vjs-endscreen-overlay-buttons .vjs-control:before{
