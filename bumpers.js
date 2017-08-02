@@ -3,7 +3,6 @@
  */
 
 videojs.plugin('bumpers', function(params) {
-
     var bumpers = params.bumpers || [];
 
     var myPlayer = this,

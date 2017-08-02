@@ -53,8 +53,9 @@ a img {
 	<script id="pageScript" type="text/javascript">
 		(function(window, videojs) {
 			var overlayTestPlayer = window.player = videojs("overlayTest");
-			overlayTestPlayer.on("loadedmetadata", function(){
+			overlayTestPlayer.on("ready", function(){
 				 this.overlay({
+					disabled: false,
 					content: '<strong>Default overlay content</strong>',
 					overlays: [{
 						align: "center",
@@ -62,11 +63,9 @@ a img {
 						showBackground: true,
 						attachToControlBar: false,
 						content: "<a href='http://www.hopkinsmedicine.org/' target='_blank'><img src='HopkinsCME_logo_lrg.png' alt='Johns Hopkins Medicine'></img></a>",
-						cue_start: 'video_start',
-						cue_end: 'initial_logo_slot_end',
+						cue_anchor: 'initial_logo_slot',
 					}, {
-						cue_start: 'initial_logo_slot_end',
-						cue_end: 'end_logo_slot_start',
+						cue_anchor: 'small_logo_slot',
 						showBackground: false,
 						attachToControlBar: true,
 						content: "<a href='http://www.hopkinsmedicine.org/' target='_blank'><img src='HopkinsCME_logo_lrg.png' alt='Johns Hopkins Medicine'></img></a>",
@@ -74,11 +73,9 @@ a img {
 					}]
 				});
 	 
-				/* this.randomBumpers(); */
-
-				 /* this.customEndscreen({
-					"content": "<section class=' endcapCallToActionContent'><a href='www.staywell.com' target='_blank'><div style='width: 100%'><a href='http://www.staywell.com/' target='_blank'><img src='http://staywelllive.tkinteractive.com/wp-content/uploads/2016/06/logo_100.png'><h3>INFORMATION / GENERAL INQUIRIES</h3><h4>Provider Solutions:</h4><p style='color: #42b9f4'><a href='http://staywell.com/contact-us/' target='_blank' >Call: 800-333-3032</a></p ><h4>Health Plan Solutions:</h4>  <p>Call: 866-249-7953</p></div></a></section>"
-				});  */
+				this.customEndscreen({
+					"content": "<section class='endcapCallToActionContent'><a href='http://www.hopkinsmedicine.org/' target='_blank'><div style='width: 100%'><a href='http://www.hopkinsmedicine.org/' target='_blank'><img src='HopkinsCME_logo_lrg.png' alt='Johns Hopkins Medicine' style='width: 66%;'></img><p>The contents of this video/website are for informational purposes only. Nothing contained in this video/website is intended to be a substitute for medical advice, diagnosis or treatment. Always consult your health care provider if you have any health care related concerns or questions.</p></div></a></section><footer><p>&#169; Johns Hopkins</p></footer>"
+				});
 			});
 		 }(window, window.videojs));
 		</script>

@@ -65,7 +65,7 @@ var CustomEndscreenModal = (function (_ModalDialog) {
 
     _get(Object.getPrototypeOf(CustomEndscreenModal.prototype), 'constructor', this).call(this, player, options);
 
-    //this.on('beforemodalopen', this.toggleSocialButton);
+    // this.on('beforemodalopen', this.toggleSocialButton);
     this.on('modalfill', this.rawContentFill);
 
     var restartButton = this.restartButton = new Button(player);
@@ -75,19 +75,19 @@ var CustomEndscreenModal = (function (_ModalDialog) {
     this.on(restartButton, ['click', 'tap'], this.restartPlayer);
     this.addChild(restartButton);
 
-    var socialButton = this.socialButton = new Button(player);
+    // var socialButton = this.socialButton = new Button(player);
 
-    socialButton.addClass(ICON_SHARE);
-    socialButton.controlText(player.localize('Share'));
-    this.on(socialButton, ['click', 'tap'], this.activateSocial);
-    this.addChild(socialButton);
+    // socialButton.addClass(ICON_SHARE);
+    // socialButton.controlText(player.localize('Share'));
+    // this.on(socialButton, ['click', 'tap'], this.activateSocial);
+    // this.addChild(socialButton);
 
     var buttonsEl = this.buttonEl = _globalDocument2['default'].createElement('div');
 
     buttonsEl.className = CLASS_BUTTONS;
 
     // Move the buttons into the buttons element.
-    dom.insertContent(buttonsEl, [restartButton.el(), socialButton.el()]);
+    dom.insertContent(buttonsEl, [restartButton.el()]);//, socialButton.el()]);
 
     var contentEl = this.contentEl();
 

@@ -432,16 +432,6 @@ var plugin = function plugin(options) {
     });
   }
 
-// CuePoint
-// endTime:6
-// force_stop:false
-// id:"5524671155001"
-// metadata:"video_start"
-// name:"overlay"
-// startTime:0
-// time:0
-// type:"CODE"
-
   var overlays = settings.overlays;
 
   // We don't want to keep the original array of overlay options around
