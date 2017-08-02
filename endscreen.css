@@ -13,7 +13,7 @@
     background-color:#fff;
     color: #777 !important;
     font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
-    text-decoration: none;
+    text-decoration: none !important;
     position:static;
     text-align: center;
     overflow: hidden;
@@ -34,6 +34,7 @@
     margin: 0 auto;
     font-size: 1em; 
     font-weight: bold;
+    text-decoration: none !important;
     color: #777 !important;
 }
 
