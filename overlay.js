@@ -66,6 +66,7 @@ var _globalWindow = require('global/window');
 var _globalWindow2 = _interopRequireDefault(_globalWindow);
 
 var defaults = {
+  enabled: true,
   align: 'top-left',
   'class': '',
   content: 'This overlay will show up while the video is playing',
@@ -113,18 +114,6 @@ var hasNoWhitespace = function hasNoWhitespace(s) {
  * @param  {videojs.player} p
  * @return {number}
  */
-// var getVideoEndOffset = function getVideoEndOffset(player, param) {
-//   param.indexOf("end-")
-//   if(param.indexOf("end-") != -1) {
-//     var offset = parseInt(param.replace("end-", ""));
-//     if(isNumber(offset)) {
-//       var duration = player.duration();
-//       return Math.max(0, duration - offset);
-//     }
-//   }
-
-//   return NaN;
-// };
 
 /**
  * Overlay component.
@@ -200,6 +189,9 @@ var Overlay = (function (_Component) {
         dom.appendContent(el, content);
       }
 
+      el.style.opacity = 0;
+      el.style.transition = 'opacity 1s linear';
+
       return el;
     }
 
@@ -269,6 +261,10 @@ var Overlay = (function (_Component) {
     value: function shouldHide_(time, type) {
       var end = this.options_.end;
 
+      if(isNumber(end) ? time >= end - 1 : end === type) {
+          this.el().style.opacity = 0;
+      }
+
       return isNumber(end) ? time >= end : end === type;
     }
 
@@ -280,7 +276,15 @@ var Overlay = (function (_Component) {
   }, {
     key: 'show',
     value: function show() {
+
       _get(Object.getPrototypeOf(Overlay.prototype), 'show', this).call(this);
+
+      this.el().style.opacity = 1;
+      this.el().style.animation = "fadein 1s";
+      this.el().style.WebkitAnimation = "fadein 1s";
+      this.el().style.MozAnimation = "fadein 1s";
+      this.el().style.OAnimation = "fadein 1s";
+      
       this.off(this.player(), this.startEvent_, this.startListener_);
       this.debug('shown');
       this.debug('unbound `startListener_` from "' + this.startEvent_ + '"');
@@ -308,6 +312,10 @@ var Overlay = (function (_Component) {
     value: function shouldShow_(time, type) {
       var start = this.options_.start;
       var end = this.options_.end;
+
+      if(this.player().videoType && this.player().videoType !== 'main') {
+        return false;
+      }
 
       if (isNumber(start)) {
 
@@ -382,7 +390,7 @@ var Overlay = (function (_Component) {
         // The overlay remains visible if two conditions are met: the end value
         // MUST be an integer and the the current time indicates that the
         // overlay should NOT be visible.
-        if (isNumber(end) && !this.shouldShow_(time)) {
+        if ((!end || isNumber(end)) && !this.shouldShow_(time)) {
           this.debug((0, _tsmlj2['default'])(_templateObject2, end));
           this.hasShownSinceSeek_ = false;
           this.hide();
@@ -417,7 +425,7 @@ var plugin = function plugin(options) {
   var _this2 = this;
   var settings = _videoJs2['default'].mergeOptions(defaults, options);
 
-  if(settings.disabled) {
+  if(JSON.parse(settings.enabled) == false) {
       return;
   }
 

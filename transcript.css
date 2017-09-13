@@ -1,0 +1,70 @@
+.video-js video, .video-js object {
+    position: absolute;
+}
+
+.video-js {
+    display: flex !important;
+    display: -ms-flex !important;
+    display: -webkit-flex !important;
+    display: -moz-flex !important;
+    display: -o-flex !important;
+
+    flex-wrap: wrap !important;
+    -webkit-flex-wrap: wrap !important;
+    -moz-flex-wrap: wrap !important;
+    -ms-flex-wrap: wrap !important;
+    -o-flex-wrap: wrap !important;
+
+    flex-direction: column !important;
+    -webkit-flex-direction: column !important;
+    -moz-flex-direction: column !important;
+    -ms-flex-direction: column !important;
+    -o-flex-direction: column !important;
+    
+    justify-content: flex-start !important;
+    -webkit-justify-content: flex-start !important;
+    -moz-justify-content: flex-start !important;
+    -ms-justify-content: flex-start !important;
+    -o-justify-content: flex-start !important;
+}
+
+.vjs-tech-flex,
+.vjs-transcript-container {
+  position: relative !important;
+  width: 100% !important;
+  height: 0 !important;
+  overflow: hidden;
+}
+
+.vjs-transcript-container {
+    flex: 1 !important;
+    -webkit-flex: 1 !important;
+    -moz-flex: 1 !important;
+    -ms-flex: 1 !important;
+    -o-flex: 1 !important;
+    
+    padding: 10px;
+    background-color: black; 
+    color: white;
+    overflow-y: auto;
+    overflow-x: wrap;
+    text-align: left;
+    font-size: 1.2em;
+    z-index: 1;
+}
+
+.vjs-tech-flex {
+  flex: 3 !important;
+  -webkit-flex: 3 !important;
+  -moz-flex: 3 !important;
+  -ms-flex: 3 !important;
+  -o-flex: 3 !important;
+}
+
+.vjs-transcript-button {
+    align-self: flex-start;
+    -webkit-align-self: flex-start;
+    -moz-align-self: flex-start;
+    -ms-align-self: flex-start;
+    -o-align-self: flex-start;
+}

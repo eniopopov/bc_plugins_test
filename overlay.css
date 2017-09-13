@@ -2,6 +2,10 @@
   /* Firefox < 16 */
   /* Safari, Chrome and Opera > 12.1 */
   /* Internet Explorer */
+  /* Opera < 12.1 */
+  /* Firefox < 16 */
+  /* Safari, Chrome and Opera > 12.1 */
+  /* Internet Explorer */
   /* Opera < 12.1 */ }
   .video-js .vjs-overlay {
     color: #323232;
@@ -24,12 +28,6 @@
     left: 50%;
     margin-left: -16.5%; }
   .video-js .vjs-overlay-center {
-    left: 50%;
-    top: 50%;
-    margin-left: -33%;
-    margin-top: -15px;
-    max-width: 66%; }
-  .video-js .vjs-overlay-fullscreen {
     max-width: 100%;
     width: 100%;
     height: 100%;
@@ -37,33 +35,15 @@
     top: 0;
     margin-left: 0;
     margin-top: 0;
-    z-index: 0 !important;
-    -webkit-animation: fadein 0.5s;
-    /* Safari, Chrome and Opera > 12.1 */
-    -moz-animation: fadein 0.5s;
-    /* Firefox < 16 */
-    -ms-animation: fadein 0.5s;
-    /* Internet Explorer */
-    -o-animation: fadein 0.5s;
-    /* Opera < 12.1 */
-    animation: fadein 0.5s; }
-  .video-js .vjs-overlay-fullscreen img {
+    z-index: 0 !important; }
+  .video-js .vjs-overlay-center img {
     position: absolute;
     left: 50%;
     top: 40%;
     max-width: 66% !important;
     width: 66% !important;
     margin-left: -33%;
-    margin-top: -15px;
-    -webkit-animation: fadein 2s;
-    /* Safari, Chrome and Opera > 12.1 */
-    -moz-animation: fadein 2s;
-    /* Firefox < 16 */
-    -ms-animation: fadein 2s;
-    /* Internet Explorer */
-    -o-animation: fadein 2s;
-    /* Opera < 12.1 */
-    animation: fadein 2s; }
+    margin-top: -15px; }
   .video-js .vjs-overlay-top-right {
     right: 10px;
     top: 10px; }
@@ -119,3 +99,33 @@
     opacity: 0; }
   to {
     opacity: 1; } }
+
+@keyframes fadeout {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
+
+@-moz-keyframes fadeout {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
+
+@-webkit-keyframes fadeout {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
+
+@-ms-keyframes fadeout {
+  .video-js from {
+    opacity: 1; }
+  .video-js to {
+    opacity: 0; } }
+
+@-o-keyframes fadeout {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }

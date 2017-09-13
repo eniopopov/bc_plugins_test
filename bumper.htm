@@ -32,7 +32,7 @@ a img {
 	 <div class="container"> 
 		<div class="row">
 			<div class="col-md-6">
-				<video id="bumperTest" data-video-id="5517053023001" 
+				<video id="bumperTest" data-video-id="5515925521001" 
 				data-account="55864912001" 
 				data-player="default" 
 				data-embed="default" 
@@ -56,24 +56,31 @@ a img {
 			bumperTestPlayer.on("ready", function(){
 				var _this = this;
 				_this.bumpers({
-					bumpers: [{
+					bumpers: [
+					{
 						type: 'start',
-						videoId: 5523232688001
-					}, 
+						videoId: 5560847673001
+					}
+					, 
 					{
 						type: 'end',
-						videoId: 5523232688001
-				}]});
+						videoId: 5560847673001
+					}
+					]});
 
 				_this.overlay({
 					overlays: [{
 						showBackground: false,
 						attachToControlBar: true,
 						content: "<a href='http://www.hopkinsmedicine.org/' target='_blank'><img src='HopkinsCME_logo_lrg.png' alt='Johns Hopkins Medicine'></img></a>",
-						start: 7,
-						end: 9999,
+						start: 2,
 						align: 'bottom-right'
 					}]
+				});
+
+				_this.customEndscreen({
+					"enabled": "false",
+					"content": "<section class='endcapCallToActionContent'><a href='http://www.hopkinsmedicine.org/' target='_blank'><div style='width: 100%'><a href='http://www.hopkinsmedicine.org/' target='_blank'><img src='http://players.brightcove.net/55864912001/rkWRGhqd8b/201708251127203310_67e.png' alt='Johns Hopkins Medicine' style='width: 50%;'></img><p>The contents of this video/website are for informational purposes only. Nothing contained in this video/website is intended to be a substitute for medical advice, diagnosis or treatment. Always consult your health care provider if you have any health care related concerns or questions.</p></div></a></section><footer><p>&#169; Johns Hopkins</p></footer>"
 				});
 			});
 

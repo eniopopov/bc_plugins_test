@@ -65,7 +65,7 @@ var CustomEndscreenModal = (function (_ModalDialog) {
 
     _get(Object.getPrototypeOf(CustomEndscreenModal.prototype), 'constructor', this).call(this, player, options);
 
-    // this.on('beforemodalopen', this.toggleSocialButton);
+    this.on('beforemodalopen', this.toggleSocialButton);
     this.on('modalfill', this.rawContentFill);
 
     var restartButton = this.restartButton = new Button(player);
@@ -75,19 +75,19 @@ var CustomEndscreenModal = (function (_ModalDialog) {
     this.on(restartButton, ['click', 'tap'], this.restartPlayer);
     this.addChild(restartButton);
 
-    // var socialButton = this.socialButton = new Button(player);
+    var socialButton = this.socialButton = new Button(player);
 
-    // socialButton.addClass(ICON_SHARE);
-    // socialButton.controlText(player.localize('Share'));
-    // this.on(socialButton, ['click', 'tap'], this.activateSocial);
-    // this.addChild(socialButton);
+    socialButton.addClass(ICON_SHARE);
+    socialButton.controlText(player.localize('Share'));
+    this.on(socialButton, ['click', 'tap'], this.activateSocial);
+    this.addChild(socialButton);
 
     var buttonsEl = this.buttonEl = _globalDocument2['default'].createElement('div');
 
     buttonsEl.className = CLASS_BUTTONS;
 
     // Move the buttons into the buttons element.
-    dom.insertContent(buttonsEl, [restartButton.el()]);//, socialButton.el()]);
+    dom.insertContent(buttonsEl, [restartButton.el(), socialButton.el()]);
 
     var contentEl = this.contentEl();
 
@@ -340,7 +340,7 @@ var _customEndscreenModal2 = _interopRequireDefault(_customEndscreenModal);
 // Video.js 5/6 cross-compatibility:
 var registerPlugin = _videoJs2['default'].registerPlugin || _videoJs2['default'].plugin;
 
-var defaults = { content: '' };
+var defaults = { enabled: true, content: '' };
 
 /**
  * Function to invoke when the player is ready.
@@ -383,7 +383,12 @@ var onPlayerReady = function onPlayerReady(player, options) {
  *           security reasons; so, special handling is used here.
  */
 var customEndscreen = function customEndscreen(options) {
-  var _this = this;
+    var _this = this,
+        _options = _videoJs2['default'].mergeOptions(defaults, options);
+
+    if (JSON.parse(_options.enabled) == false) {
+        return;
+    }
 
   // Invoke the endscreen plugin in this way so that the dependency doesn't
   // trigger any linter error(s).
@@ -402,7 +407,7 @@ var customEndscreen = function customEndscreen(options) {
     });
 
     this.ready(function () {
-      return onPlayerReady(_this, _videoJs2['default'].mergeOptions(defaults, options));
+      return onPlayerReady(_this, _options);
     });
   }
 };
