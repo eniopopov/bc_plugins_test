@@ -1,9 +1,20 @@
-/*
- * videojs-ga-videocloud - v0.4.2 - 2016-08-24
+/**
+ * @summary Google Analytics VideoJs Plugin
+ * 
+ * Staywell Google Analytics Plugin for VideoJs based on videojs-ga-videocloud - v0.4.2 - 2016-08-24
+ * 
+ * New Functionalities added: 
+ * - support for multiple GA tracking ids
+ * 
+ * @version 1.0.0
+ * @see videojs-ga-videocloud
+ * @link https://github.com/BrightcoveOS/videojs-ga-videocloud
+ * @since v0.4.2 - 2016-08-24
  * Based on videojs-ga 0.4.2
  * Copyright (c) 2016 Michael Bensoussan
- * Licensed MIT
+ * @license MIT
  */
+
 (function () {
   var __indexOf = [].indexOf || function (item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
   var __isArray = function (arg) { return Object.prototype.toString.call(arg) === '[object Array]'; };

@@ -1,49 +1,43 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>IIS Windows</title>
-<style type="text/css">
-<!--
-body {
-	color:#000000;
-	background-color:#0072C6;
-	margin:auto;
-}
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>IIS Windows</title>
+	<style type="text/css">
+		<!-- body {
+			color: #000000;
+			background-color: #0072C6;
+			margin: auto;
+		}
 
-.container {
-	margin: 0 auto;
-	max-width: 1000px !important;
-	width: 1000px !important;
-}
+		.container {
+			margin: 0 auto;
+			max-width: 1000px !important;
+			width: 1000px !important;
+		}
 
-a img {
-	border:none;
-}
+		a img {
+			border: none;
+		}
 
--->
-</style>
-<link href="overlay.css" rel="stylesheet"/>
-<link href="endscreen.css" rel="stylesheet"/>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+		-->
+	</style>
+	<link href="overlay.css" rel="stylesheet" />
+	<link href="endscreen.css" rel="stylesheet" />
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
 
 </head>
+
 <body>
-	 <div class="container"> 
+	<div class="container">
 		<div class="row">
 			<div class="col-md-6">
-				<video id="overlayTest" data-video-id="5515925521001" 
-				data-account="55864912001" 
-				data-player="default" 
-				data-embed="default" 
-				data-application-id
-				class="video-js" 
-				width="700"
-				height="500"
-				controls></video>
+				<video id="overlayTest" data-video-id="5426138225001" data-account="55864912001" data-player="default" data-embed="default"
+				 data-application-id class="video-js" width="700" height="500" controls></video>
 			</div>
 		</div>
-	 </div> 
+	</div>
 
 	<script src="//vjs.zencdn.net/ie8/1.1.1/videojs-ie8.min.js"></script>
 	<script src="//players.brightcove.net/55864912001/default_default/index.min.js"></script>
@@ -51,34 +45,61 @@ a img {
 	<script src="endscreen.js"></script>
 	<script src="bumpers.js"></script>
 	<script id="pageScript" type="text/javascript">
-		(function(window, videojs) {
+		(function (window, videojs) {
 			var overlayTestPlayer = window.player = videojs("overlayTest");
-			
+
 			overlayTestPlayer.overlay({
-				content: "<strong>Default overlay content</strong>",
 				overlays: [
-					 {
+					{
 						align: "center",
 						showBackground: true,
 						attachToControlBar: false,
 						content: "<a href='http://www.hopkinsmedicine.org/' target='_blank'><img src='http://players.brightcove.net/55864912001/rkWRGhqd8b/201708251127203310_67e.png' alt='Johns Hopkins Medicine'></img></a>",
 						start: 0,
-						end: 6
+						end: 3
 						/* cue_anchor: "initial_logo_slot" */
-					}, 
-					 {
+					},
+					{
 						showBackground: false,
 						attachToControlBar: true,
 						content: "<a href='http://www.hopkinsmedicine.org/' target='_blank'><img src='http://players.brightcove.net/55864912001/rkWRGhqd8b/201708251127203310_67e.png'></img></a>",
-						start: 9,
-						end: 28,
+						start: 3,
+						end: 100,
 						/* cue_anchor: "small_logo_slot", */
 						align: "bottom-right"
-					} 
+					},
+					{
+						name: "Hopkins",
+						videos: ["5515925521001"],
+						align: "bottom-right",
+						showBackground: false,
+						attachToControlBar: true,
+						content: "<img src='http://players.brightcove.net/55864912001/BJGwdjsVZ/201709131404434179_f55.jpg' alt=''></img>",
+						start: 0,
+						end: 6
+						/* cue_anchor: "initial_logo_slot" */
+					},
+					{
+						name: "Specific by video",
+						videos: ["5513172885001", "5541019578001"],
+						align: "bottom-right",
+						showBackground: false,
+						attachToControlBar: true,
+						content: "<img src='http://players.brightcove.net/55864912001/BJGwdjsVZ/201709131404515480_4fc.jpeg' alt=''></img>",
+						start: 0,
+						end: 6
+						/* cue_anchor: "initial_logo_slot" */
+					},
+					{
+						name: "Video without overlays",
+						videos: ["5567329952001"],
+						enabled: false
+					}
 				]
 			});
 
-		 }(window, window.videojs));
-		</script>
+		}(window, window.videojs));
+	</script>
 </body>
+
 </html>
